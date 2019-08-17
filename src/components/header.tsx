@@ -1,42 +1,22 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import styled from "styled-components"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
+interface Props {
+  children: React.ReactNode
 }
 
-Header.defaultProps = {
-  siteTitle: ``,
+export default function Header({ children }: Props) {
+  return <Container>{children}</Container>
 }
 
-export default Header
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin: 4vh 0;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: none;
+    grid-template-rows: 1fr 1fr;
+  }
+`
