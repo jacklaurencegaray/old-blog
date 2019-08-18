@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode
 }
 
-export default function Header({ children }: Props) {
+export default function HeaderContainer({ children }: Props) {
   return <Container>{children}</Container>
 }
 
