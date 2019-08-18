@@ -1,61 +1,61 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
-import Layout from "../components/layout"
+import Layout from "../containers/layout"
 import SEO from "../components/seo"
 import Post from "../components/post"
-import Title from "../components/title"
-import Header from "../components/header"
-import Search from "../components/search"
-import Switcher from "../components/switcher"
+import { graphql } from "gatsby"
+import Header from "../containers/header"
+import UserSettings from "../providers/user-settings"
+import { noop } from "../utils/noop"
 
-const noop = () => {}
+export const query = graphql`
+  query {
+    allContentfulPosts {
+      nodes {
+        title
+        subtitle
+        keywords
+        createdAt
+        author {
+          name
+        }
+      }
+    }
+  }
+`
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <Container>
-      <Content>
-        <Header>
-          <Title title="Ventilatte" />
-          <Controls>
-            <Switcher onOn={noop} onOff={noop} />
-            <Search
-              placeholder={"Search this blog"}
-              onSearch={() => {}}
-              style={{ justifySelf: "self-end" }}
+const IndexPage = ({ data }) => {
+  const userSettings = useContext(UserSettings)
+
+  const toggleTheme = () => {
+    userSettings.theme = userSettings.theme === "dark" ? "light" : "dark"
+  }
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <Container>
+        <Content>
+          <Header
+            onOn={toggleTheme}
+            onOff={toggleTheme}
+            searchPlaceholder={"Search this blog"}
+            onSearch={noop}
+          />
+          {data.allContentfulPosts.nodes.map(post => (
+            <Post
+              title={post.title}
+              subtitle={post.subtitle}
+              date={new Date(post.createdAt).toDateString()}
+              keywords={post.keywords}
+              author={post.author.name}
             />
-          </Controls>
-        </Header>
-        <PostContainer>
-          <Post
-            title="Quick todo list with hooks"
-            subtitle="Learning by applying"
-            date={new Date().toDateString()}
-            keywords={["great", "amazing", "did", "you"]}
-          />
-          <Post
-            title="The dark side of the Singleton pattern"
-            subtitle="Learning by applying"
-            date={new Date().toDateString()}
-            keywords={["dark", "side", "singletons", "practices"]}
-          />
-          <Post
-            title="Quick todo list with hooks"
-            subtitle="Learning by applying"
-            date={new Date().toDateString()}
-            keywords={["new", "react", "update", "hooks"]}
-          />
-          <Post
-            title="Quick todo list with hooks"
-            subtitle="Learning by applying"
-            date={new Date().toDateString()}
-            keywords={["quick", "todo", "list", "hooks"]}
-          />
-        </PostContainer>
-      </Content>
-    </Container>
-  </Layout>
-)
+          ))}
+        </Content>
+      </Container>
+    </Layout>
+  )
+}
 
 const Container = styled.div`
   width: 100vw;
@@ -73,11 +73,5 @@ const Content = styled.div`
 `
 
 const PostContainer = styled.div``
-
-const Controls = styled.div`
-  display: grid;
-  grid-template-columns: 10px 1fr;
-  grid-column-gap: 20px;
-`
 
 export default IndexPage

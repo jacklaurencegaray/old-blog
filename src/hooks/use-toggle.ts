@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Status } from "../types"
 
 export default function useToggle(
   toggleStatus: Status,
   onOn: () => void,
   onOff: () => void
-): [Status, () => void, () => void, () => void] {
+) {
   const [status, setStatus] = useState(toggleStatus)
 
   const toggle = () =>
@@ -14,9 +14,9 @@ export default function useToggle(
   const turnOff = () => setStatus("OFF")
 
   useEffect(() => {
-    status === "ON" && onOn()
-    status === "OFF" && onOff()
+    status === "ON" && onOn() && console.log(onOn)
+    status === "OFF" && onOff() && console.log(onOff)
   }, [status])
 
-  return [status, toggle, turnOn, turnOff]
+  return [status, toggle as Function, turnOn, turnOff]
 }

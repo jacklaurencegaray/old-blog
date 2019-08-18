@@ -9,14 +9,10 @@ interface Props {
 
 export default function Switcher({ onOn = () => {}, onOff = () => {} }: Props) {
   const [status, toggle] = useToggle("OFF", onOn, onOff)
-  const onSwitch = (event: SyntheticEvent) => {
-    window.alert("toggled!")
-    window.alert(typeof toggle)
-  }
 
   return status === "ON" ? (
-    <p onClick={onSwitch}>OFF</p>
+    <p onClick={toggle}>OFF</p>
   ) : (
-    <p onClick={onSwitch}>ON</p>
+    <p onClick={toggle}>ON</p>
   )
 }
