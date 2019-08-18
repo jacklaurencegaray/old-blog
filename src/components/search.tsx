@@ -31,12 +31,17 @@ const inputBackgroundColor = theme("mode", {
 
 const inputHighlightColor = theme("mode", {
   dark: dark.primary,
-  light: dark.primary,
+  light: light.primary,
+})
+
+const inputColor = theme("mode", {
+  dark: dark.fg,
+  light: light.fg,
 })
 
 const Input = styled.input`
   background-color: ${inputBackgroundColor};
-  color: white;
+  color: ${inputColor};
   height: fit-content;
   width: fit-content;
   padding: 20px 20px;

@@ -22,12 +22,14 @@ export default function Post({
 }: Props) {
   return (
     <Container>
-      <Date>{date}</Date>
+      <Details>
+        <Date>{date}</Date>
+      </Details>
       <Link to={link}>
         <Title>{title}</Title>
       </Link>
       <SubTitle>{subtitle}</SubTitle>
-      {keywords.length && (
+      {keywords.length ? (
         <KeywordContainer>
           {keywords.map(keyword => (
             <Link to={`/tags/${keyword}`}>
@@ -35,12 +37,12 @@ export default function Post({
             </Link>
           ))}
         </KeywordContainer>
-      )}
+      ) : null}
     </Container>
   )
 }
 
-const dateColor = theme("mode", {
+const detailColor = theme("mode", {
   light: light.fg,
   dark: dark.fg,
 })
@@ -92,13 +94,16 @@ const SubTitle = styled.div`
     font-size: 18px;
   }
 `
+const KeywordContainer = styled.div`
+  padding-top: 12px;
+`
 
-const Date = styled.div`
-  color: ${dateColor};
-  font-size: 16px;
+const Details = styled.div`
   margin-bottom: 12px;
 `
 
-const KeywordContainer = styled.div`
-  padding-top: 12px;
+const Date = styled.span`
+  color: ${detailColor};
+  font-size: 16px;
+  margin-right: 12px;
 `
