@@ -5,6 +5,7 @@
   "version": "0.0.1",
   "author": "Jack Laurence Garay <lawrencetecho@gmail.com>",
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^13.4.0",
     "gatsby": "^2.13.64",
     "gatsby-image": "^2.2.8",
     "gatsby-plugin-manifest": "^2.2.5",
@@ -22,14 +23,20 @@
     "styled-theming": "^2.2.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-syntax-nullish-coalescing-operator": "^7.2.0",
     "@types/node": "^12.7.2",
     "@types/react": "^16.9.1",
     "@types/react-dom": "^16.8.5",
     "@types/styled-components": "^4.1.18",
+    "add": "^2.0.6",
     "babel-plugin-styled-components": "^1.10.6",
+    "babel-preset-gatsby": "^0.2.8",
     "dotenv": "^8.1.0",
     "gatsby-plugin-typescript": "^2.1.2",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "yarn": "^1.17.3"
   },
   "keywords": [
     "gatsby"
