@@ -20,7 +20,7 @@ export default function Header({
   searchPlaceholder = "Search this blog",
   onSearch = noop,
   searchStyle = {},
-}: Props) {
+}: Props and React.ComponentType<typeof HeaderContainer>) {
   return (
     <HeaderContainer>
       <Title title="Ventilatte" />
