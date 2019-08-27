@@ -1,15 +1,19 @@
 import { createContext } from "react"
 
-export type Theme = "light" | "dark"
+export type ThemeColor = "light" | "dark"
 
 export interface UserSettings {
-  theme: Theme
+  theme: {
+    mode: ThemeColor
+  }
 }
 
-const defaultTheme: Theme = "light"
+const defaultTheme: ThemeColor = "light"
 
 export const initialValue = {
-  theme: defaultTheme,
+  theme: {
+    mode: defaultTheme,
+  },
 }
 
 const UserSettingsContext = createContext<UserSettings>(initialValue)

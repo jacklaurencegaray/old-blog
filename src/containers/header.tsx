@@ -1,10 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import Title from "../components/title"
-import Switcher from "../components/switcher"
 import Search from "../components/search"
 import HeaderContainer from "../components/header-container"
-import { noop } from "../utils/noop"
+import { noop } from "../utils/utilities"
+import theme from "styled-theming"
+import { dark, light } from "../assets/styles/colors"
+import useToggle from "../hooks/use-toggle"
+import Switch from "react-switch"
+import { Twemoji } from "react-emoji-render"
 
 interface Props {
   onOn: () => void
@@ -14,6 +18,11 @@ interface Props {
   searchStyle?: React.CSSProperties
 }
 
+const switchOnColor = theme("mode", {
+  dark: dark.secondary,
+  light: light.secondary,
+})
+
 export default function Header({
   onOn = noop,
   onOff = noop,
@@ -21,11 +30,20 @@ export default function Header({
   onSearch = noop,
   searchStyle = {},
 }: Props) {
+  const { status, toggle } = useToggle("OFF", onOn, onOff)
+  // const { theme } = useContext(UserSettingsContext)
+
   return (
     <HeaderContainer>
       <Title title="Ventilatte" />
       <Controls>
-        <Switcher onOn={onOn} onOff={onOff} />
+        <Switch
+          onColor={switchOnColor}
+          onChange={toggle}
+          checked={status === "ON"}
+          checkedIcon={<Twemoji text={"🌛"} />}
+          uncheckedIcon={<Twemoji text={"☀️"} />}
+        />
         <StyledSearch
           placeholder={searchPlaceholder}
           onSearch={onSearch}

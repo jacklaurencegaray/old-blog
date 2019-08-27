@@ -8,7 +8,6 @@ import theme from "styled-theming"
 import UserSettings, {
   initialValue as userSettingsInitialValue,
 } from "../providers/user-settings"
-import Test from "./test"
 
 const globalContainerColor = theme("mode", {
   dark: dark.bg,
@@ -28,8 +27,10 @@ const Layout = ({ children }) => {
   const userSettings = useContext(UserSettings)
   return (
     <>
-      <UserSettings.Provider value={userSettingsInitialValue}>
-        <Test>{children}</Test>
+      <UserSettings.Provider value={{ userSettingsInitialValue }}>
+        <ThemeProvider theme={{ mode: userSettingsInitialValue.theme }}>
+          {children}
+        </ThemeProvider>
       </UserSettings.Provider>
     </>
   )
