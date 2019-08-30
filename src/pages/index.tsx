@@ -6,7 +6,7 @@ import Post from "../components/post"
 import { graphql } from "gatsby"
 import Header from "../containers/header"
 import UserSettings from "../providers/user-settings"
-import { noop } from "../utils/noop"
+import { noop } from "../utils/utilities"
 
 export const query = graphql`
   query {

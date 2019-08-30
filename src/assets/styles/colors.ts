@@ -1,7 +1,7 @@
 const colors = {
   dark: {
     bg: "#1A1A1A",
-    secondaryBg: "#121212",
+    secondaryBg: "#161616",
     fg: "#FFFFFF",
     primary: "#FFD49C",
     secondary: "#FF9D1F",

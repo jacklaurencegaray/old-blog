@@ -73,7 +73,7 @@ const Title = styled.div`
   font-size: 40px;
   font-family: Graphik;
   font-weight: bold;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   width: fit-content;
 
   @media screen and (max-width: 600px) {
@@ -88,7 +88,7 @@ const Title = styled.div`
 const SubTitle = styled.div`
   color: ${subtitleColor};
   font-size: 18px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 
   @media screen and (max-width: 600px) {
     font-size: 18px;
@@ -99,7 +99,7 @@ const KeywordContainer = styled.div`
 `
 
 const Details = styled.div`
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 `
 
 const Date = styled.span`
